@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/aquilax/nesferry/common"
+	"github.com/aquilax/newsferry/common"
 )
 
 func main() {
@@ -16,11 +16,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	var feed common.Feed
-	json.Unmarshal(data, &feed)
+	var feedRequest common.FeedRequest
+	json.Unmarshal(data, &feedRequest)
 
 	var resp *http.Response
-	resp, err = http.Get(feed.Url)
+	resp, err = http.Get(feedRequest.Url)
 	if err != nil {
 		panic(err)
 	}
@@ -30,8 +30,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fetchedFeed := common.FetchedFeed{Feed: feed, FeedBody: string(data)}
-	fetchedFeed.Feed = feed
+	fetchedFeed := common.FetchedFeed{FeedRequest: feedRequest, FeedBody: string(data)}
 	data, err = json.Marshal(fetchedFeed)
 	if err != nil {
 		panic(err)

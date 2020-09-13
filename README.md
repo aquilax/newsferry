@@ -31,3 +31,9 @@ out: [<FeedItem>]
 
 ### storage-in
 in: [<FeedItem>]
+
+
+### Fetcher pipeline
+```command
+$ echo '{"url":"http://rss.slashdot.org/Slashdot/slashdotMain"}' | go run cmd/fetcher/fetcher.go | go run cmd/parser/parser.go
+```
