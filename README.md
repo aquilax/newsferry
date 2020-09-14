@@ -16,24 +16,26 @@ An RSS thing
 
 ### FeedItem
 ```json
-{"feedUrl": "https://example.com", "feedMeta": {}, "article": "<html>", "articleMeta": {}}
+{"feedUrl": "https://example.com", "feedMeta": {}, "article": "<html/>", "articleMeta": {}}
 ```
 
 ## Tools
 
-### fetcher
-in: <Feed>
-out: <FetchedFeed>
+### fetch
+in: `<Feed>`
+out: `<FetchedFeed>`
 
-### parser
-in: <FetchedFeed>
-out: [<FeedItem>]
+### parse
+in: `<FetchedFeed>`
+out: `[<FeedItem>]`
 
-### storage-in
-in: [<FeedItem>]
+### store
+in: `[<FeedItem>]`
 
 
-### Fetcher pipeline
+## Pipelines
+
+### fetch -> parse -> "store"
 ```command
-$ echo '{"url":"http://rss.slashdot.org/Slashdot/slashdotMain"}' | go run cmd/fetcher/fetcher.go | go run cmd/parser/parser.go
+$ echo '{"url":"http://rss.slashdot.org/Slashdot/slashdotMain"}' | go run cmd/fetch/main.go | go run cmd/parse/main.go
 ```
