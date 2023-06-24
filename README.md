@@ -4,17 +4,20 @@ An RSS thing
 
 ## Entities
 
-### Feed:
+### Feed
+
 ```json
 {"feedUrl": "https://example.com", "feedMeta": {}}
 ```
 
 ### FetchedFeed
+
 ```json
 {"feedUrl": "https://example.com", "feedMeta": {}, "feedBody": "<xml/>"}
 ```
 
 ### FeedItem
+
 ```json
 {"feedUrl": "https://example.com", "feedMeta": {}, "article": "<html/>", "articleMeta": {}}
 ```
@@ -22,20 +25,23 @@ An RSS thing
 ## Tools
 
 ### fetch
+
 in: `<Feed>`
 out: `<FetchedFeed>`
 
 ### parse
+
 in: `<FetchedFeed>`
 out: `[<FeedItem>]`
 
 ### store
-in: `[<FeedItem>]`
 
+in: `[<FeedItem>]`
 
 ## Pipelines
 
 ### fetch -> parse -> "store"
+
 ```command
-$ echo '{"url":"http://rss.slashdot.org/Slashdot/slashdotMain"}' | go run cmd/fetch/main.go | go run cmd/parse/main.go
+echo '{"url":"http://rss.slashdot.org/Slashdot/slashdotMain"}' | go run cmd/fetch/main.go | go run cmd/parse/main.go | go run cmd/store/main.go
 ```
